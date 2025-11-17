@@ -153,27 +153,6 @@ doze-simulator -p com.example.app -w 20 -a
 
 ---
 
-## 🧪 Examples
-
-### Full professional example
-
-```bash
-doze-simulator \
-  --package=com.example.app \
-  --wait=45 \
-  --verbose \
-  --no-colors \
-  --activate
-```
-
-### Minimal, short flags
-
-```bash
-doze-simulator -p com.example.app -w 20
-```
-
----
-
 ## 📱 Requirements
 
 * ADB installed
