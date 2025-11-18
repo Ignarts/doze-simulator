@@ -179,15 +179,3 @@ It provides a **fast and reliable approximation**, ideal for development and CI.
 This project is licensed under the **MIT License**.
 
 ---
-
-## 🤝 Contributing
-
-Pull requests and feature suggestions are welcome!
-
-Ideas you can contribute:
-
-* Custom Standby Bucket selection
-* Doze timeline inspector
-* Integration with logcat filters
-* Saving session logs to file
-* Dockerized environment for CI
