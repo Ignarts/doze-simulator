@@ -19,3 +19,8 @@ jobs:
         with:
           scandir: '.'
           severity: warning
+
+      - name: Run Unit Tests
+        run: |
+          chmod +x tests/test_doze_simulator.sh
+          ./tests/test_doze_simulator.sh
