@@ -147,6 +147,8 @@ doze-simulator -p com.example.app -w 20 -a
 | `-p`  | `--package <name>` | Target app package name (required) |
 | `-w`  | `--wait <seconds>` | Idle simulation time (required)    |
 | `-a`  | `--activate`       | Reactivate the app when finished   |
+| `-k`  | `--kill`           | Force stop app (Simulate OS kill)  |
+| `-d`  | `--dry-run`        | Print commands without executing   |
 | `-v`  | `--verbose`        | Show detailed logs                 |
 | `-n`  | `--no-colors`      | Disable ANSI colors (CI-safe)      |
 | `-h`  | `--help`           | Show help menu                     |
