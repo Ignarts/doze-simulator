@@ -125,3 +125,38 @@ Waiting:
 
 --- SIMULATION COMPLETE --
 ```
+
+## Force Stop (Simulate Cold Start)
+
+Use this to simulate the OS killing the app process to save memory.
+
+```bash
+doze-simulator -p com.example.app -w 10 --kill
+```
+
+**Output:**
+
+```
+...
+[3/6] Forcing app into App Standby...
+[4/6] Killing app process (Simulating OS kill)...
+[5/6] Waiting to simulate idle...
+...
+```
+
+## Dry Run (Safe Mode)
+
+Preview the commands without executing them. No device required.
+
+```bash
+doze-simulator -p com.example.app -w 10 --dry-run
+```
+
+**Output:**
+
+```
+[DRY-RUN ENABLED] No commands will be executed
+...
+[DRY-RUN] adb shell dumpsys battery unplug
+...
+```

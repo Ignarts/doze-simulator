@@ -57,6 +57,10 @@ The tool is useful for:
 
 * Simulates deep **Doze mode**
 * Forces a target app into **App Standby**
+* **Force Stop** option for Cold Start simulation
+* **Dry Run** mode for safe testing
+* **Pre-flight checks** (ADB, Device, App running)
+* **Unit Tests** included
 * Supports **short & long flags**
 * Optional app reactivation step
 * Device and package validation

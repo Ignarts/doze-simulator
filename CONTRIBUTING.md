@@ -29,7 +29,10 @@ This section guides you through submitting an enhancement suggestion, including 
 
 1.  Fork the repo and create your branch from `main`.
 2.  If you've added code that should be tested, add tests.
-3.  Ensure the test suite passes.
+3.  Ensure the test suite passes:
+    ```bash
+    ./tests/test_doze_simulator.sh
+    ```
 4.  Make sure your code follows the existing style (we use `shellcheck` for the script).
 5.  Issue that pull request!
 
