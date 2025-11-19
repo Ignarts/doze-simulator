@@ -43,6 +43,7 @@ run_cmd() {
 }
 
 usage() {
+  local exit_code=${1:-1}
   echo "Usage:"
   echo "  $0 -p <PACKAGE> -w <SECONDS> [options]"
   echo ""
@@ -55,7 +56,7 @@ usage() {
   echo "  -p, --package <name>   Package name of the app"
   echo "  -w, --wait <seconds>   Waiting time to simulate idle"
   echo "  -h, --help             Show this help message"
-  exit 1
+  exit "$exit_code"
 }
 
 # ===========================
@@ -93,7 +94,7 @@ while [[ "$#" -gt 0 ]]; do
       WAIT_TIME="${1#*=}"
       ;;
     -h|--help)
-      usage
+      usage 0
       ;;
     *)
       echo "Unknown option: $1"
