@@ -28,7 +28,7 @@ disable_colors() {
 
 log() {
   if [ "$VERBOSE" = true ]; then
-    echo -e "$1"
+    printf "%s\n" "$1"
   fi
 }
 
@@ -85,17 +85,39 @@ while [[ "$#" -gt 0 ]]; do
   shift
 done
 
+# Disable colors if requested
+if [ "$USE_COLORS" = false ]; then
+  disable_colors
+fi
+
+# ===========================
+# Validate Environment
+# ===========================
+
+# 1. Check if ADB is installed
+if ! command -v adb &> /dev/null; then
+    printf "${red}Error: ADB is not installed or not in your PATH.${reset}\n"
+    printf "Please install Android Platform Tools.\n"
+    exit 1
+fi
+
+# 2. Check if a device is connected
+device_count=$(adb devices | grep -w "device" | grep -v "List of devices attached" | wc -l)
+
+if [ "$device_count" -eq 0 ]; then
+    printf "${red}Error: No Android device found.${reset}\n"
+    printf "Please connect a device and enable USB Debugging.\n"
+    exit 1
+elif [ "$device_count" -gt 1 ]; then
+    printf "${yellow}Warning: Multiple devices connected. Using the first one found.${reset}\n"
+fi
+
 # ===========================
 # Validate required arguments
 # ===========================
 if [ -z "$PACKAGE" ] || [ -z "$WAIT_TIME" ]; then
-  echo -e "${red}Error:${reset} Package and wait time are required."
+  printf "${red}Error:${reset} Package and wait time are required.\n"
   usage
-fi
-
-# Disable colors if requested
-if [ "$USE_COLORS" = false ]; then
-  disable_colors
 fi
 
 total_steps=5
@@ -106,45 +128,45 @@ fi
 # ===========================
 # START SIMULATION
 # ===========================
-echo -e "${cyan}--- DOZE SIMULATION ---${reset}"
-echo "Package: $PACKAGE"
-echo "Simulated wait: $WAIT_TIME seconds"
-echo "------------------------------------"
+printf "${cyan}--- DOZE SIMULATION ---${reset}\n"
+printf "Package: %s\n" "$PACKAGE"
+printf "Simulated wait: %s seconds\n" "$WAIT_TIME"
+printf "------------------------------------\n"
 
-echo -e "${yellow}[1/$total_steps] Unplugging battery...${reset}"
+printf "${yellow}[1/$total_steps] Unplugging battery...${reset}\n"
 adb shell dumpsys battery unplug
 log "Battery unplug forced"
 sleep 1
 
-echo -e "${yellow}[2/$total_steps] Forcing Doze idle mode...${reset}"
+printf "${yellow}[2/$total_steps] Forcing Doze idle mode...${reset}\n"
 adb shell dumpsys deviceidle force-idle
 log "Doze deep idle forced"
 sleep 1
 
-echo -e "${yellow}[3/$total_steps] Forcing app into App Standby...${reset}"
+printf "${yellow}[3/$total_steps] Forcing app into App Standby...${reset}\n"
 adb shell am set-inactive "$PACKAGE" true
 log "App set to inactive"
 sleep 1
 
-echo -e "${yellow}[4/$total_steps] Waiting to simulate idle...${reset}"
+printf "${yellow}[4/$total_steps] Waiting to simulate idle...${reset}\n"
 for ((i=1; i<=WAIT_TIME; i++)); do
   printf "\r\033[K${cyan}Waiting: %d / %d seconds${reset}" "$i" "$WAIT_TIME"
   sleep 1
 done
-echo -e "\nDone waiting."
+printf "\nDone waiting.\n"
 sleep 1
 
-echo -e "${yellow}[5/$total_steps] Releasing Doze...${reset}"
+printf "${yellow}[5/$total_steps] Releasing Doze...${reset}\n"
 adb shell dumpsys deviceidle unforce
 log "Doze unforced"
 sleep 1
 
 if [ "$ACTIVATE_APP" = true ]; then
-  echo -e "${yellow}[6/$total_steps] Optional app reactivation...${reset}"
-  echo -e "${cyan}→ Marking app as active (set-inactive false)${reset}"
+  printf "${yellow}[6/$total_steps] Optional app reactivation...${reset}\n"
+  printf "${cyan}→ Marking app as active (set-inactive false)${reset}\n"
   adb shell am set-inactive "$PACKAGE" false
   fi
 
 sleep 1
 
-echo -e "${green}--- SIMULATION COMPLETE ---${reset}"
+printf "${green}--- SIMULATION COMPLETE ---${reset}\n"
