@@ -2,7 +2,7 @@
 
 INSTALL_DIR="/usr/local/bin"
 SCRIPT_NAME="doze-simulator"
-SOURCE_FILE="doze-simulator.sh"
+SOURCE_FILE="$(dirname "$0")/../bin/doze-simulator"
 
 # Colors
 GREEN='\033[0;32m'

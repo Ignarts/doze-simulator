@@ -7,7 +7,7 @@
 # Ensure we are in the project root
 cd "$(dirname "$0")/.." || exit 1
 
-SCRIPT="./doze-simulator.sh"
+SCRIPT="./bin/doze-simulator"
 MOCK_LOG="$(pwd)/mock_adb.log"
 TMP_BIN="$(pwd)/tmp_bin"
 

@@ -106,19 +106,19 @@ cd doze-simulator
 ### 2. Install via script
 
 ```bash
-sudo ./install.sh
+sudo ./scripts/install.sh
 ```
-
+ 
 ### 3. Confirm installation
-
+ 
 ```bash
 doze-simulator --help
 ```
-
+ 
 ### Uninstall
-
+ 
 ```bash
-sudo ./uninstall.sh
+sudo ./scripts/uninstall.sh
 ```
 
 ---
