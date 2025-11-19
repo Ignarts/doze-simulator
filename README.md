@@ -95,23 +95,30 @@ Instead of waiting 6–8 hours, **doze-simulator** allows developers to quickly 
 ---
 
 ## 📦 Installation
-
-### 1. Make the script executable
-
+ 
+### 1. Clone the repository
+ 
 ```bash
-chmod +x doze-simulator
+git clone https://github.com/YOUR_USERNAME/doze-simulator.git
+cd doze-simulator
 ```
-
-### 2. Install it globally
+ 
+### 2. Install via script
 
 ```bash
-sudo mv doze-simulator /usr/local/bin/
+sudo ./install.sh
 ```
 
 ### 3. Confirm installation
 
 ```bash
 doze-simulator --help
+```
+
+### Uninstall
+
+```bash
+sudo ./uninstall.sh
 ```
 
 ---
