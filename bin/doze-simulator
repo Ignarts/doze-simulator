@@ -207,7 +207,7 @@ if [ "$KILL_APP" = true ]; then
     fi
   fi
 
-  run_cmd adb shell am force-stop "$PACKAGE"
+  run_cmd adb shell am kill "$PACKAGE"
   
   if [ "$DRY_RUN" = false ]; then
     sleep 1

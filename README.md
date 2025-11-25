@@ -123,6 +123,21 @@ sudo ./scripts/uninstall.sh
 
 ---
 
+## 🎬 Quick Demo
+
+Want to see it in action? Run the interactive demo:
+
+```bash
+./demo.sh
+```
+
+This will showcase all features with example commands. Perfect for:
+- Learning how to use the tool
+- Recording a terminal session with `asciinema`
+- Demonstrating to your team
+
+---
+
 ## 🚀 Usage
 
 ### Basic simulation (Doze + Standby)
